@@ -1,28 +1,28 @@
 /*
-VIDEO FOR TUTORIAL
+video tutorial for main stuff
 https://www.youtube.com/watch?v=w7ejDZ8SWv8
+
+tutorial for navbar
+https://www.youtube.com/watch?v=VzWBLj_CfpE
 
 */
 
-
-
-//import logo from './logo.svg';
-import './App.css';
-
 // import our own components
-import Header from './components/Header';
+//import Header from './components/Header';
+import React from 'react';
+import './App.css';
+import Navbar from './components/Navbar/index';
+import {BrowserRouter as Router} from 'react-router-dom';
+
+
 
 function App() {
   const name = 'Alex';
   return (
-    <div className="container">
-      
-      <h1>Hello this is a stock website</h1>
-      <p>My name is {name}</p>
+    <Router>
 
-      <Header title='title'/>
-
-    </div>
+      <Navbar />
+    </Router>
   );
 }
 

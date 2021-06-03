@@ -15,7 +15,7 @@ import Navbar from './components/Navbar/index';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Main from './pages/index';
-import MyStocks from './pages/myStocks';
+import stockChart from './pages/myStocks';
 import search from './pages/search';
 
 
@@ -26,7 +26,7 @@ function App() {
       <Switch>
 
         <Route path='/' exact component = {Main} />
-        <Route path='/home1' component = {MyStocks} />
+        <Route path='/home1' component = {stockChart} />
         <Route path='/secondary' component = {search} />
 
       </Switch>

@@ -1,10 +1,10 @@
 // https://material-ui.com/components/tables/
 
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
-
-import { makeStyles } from '@material-ui/core/styles';
+//import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -13,11 +13,13 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+/*
 const useStyles = makeStyles({
     table: {
       minWidth: 650,
     },
 });
+*/
 
 function createData(ticker, name, price, dailyChange) {
     return { ticker, name, price, dailyChange };
@@ -31,8 +33,24 @@ const data = [
     createData('tsla', 'Tesla', 680, -23.30),
 ];
 
-
 const stockChart = () => {
+    /*
+    const url = 'http://localhost:3000/getQuoteRoute/Tech';
+    const [product, setProduct] = useState(null);
+
+    axios.get(url)
+        .then(response =>{
+            setProduct(response.data);
+        })
+
+    useEffect(() => {
+        axios.get(url)
+        .then(response =>{
+            setProduct(response.data);
+        })
+    }, [url])
+    
+    */
     return (
         <TableContainer component={Paper}>
             <Table>

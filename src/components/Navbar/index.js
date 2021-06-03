@@ -12,19 +12,19 @@ const Navbar = () => {
     return (
         <>
             <Nav>
-                <NavLink to="/">
+                <NavLink to="/" activeStyle>
                     <h1>StockViewer</h1>
                 </NavLink>
 
                 <Bars />
 
                 <NavMenu>
-                    <NavLink to="/Main" activeStyle>
+                    <NavLink to="/home1" activeStyle>
                         My Stocks
                     </NavLink>
-                    <NavLink to="/Search" activeStyle>
+                    <NavLink to="/secondary" activeStyle>
                         Search
-                    </NavLink>    
+                    </NavLink>   
                 </NavMenu>
                 <NavBtn>
                     <NavBtnLink to='/signin'>

@@ -22,6 +22,7 @@ const Search = () => {
         setValue(newValue);
     }
 
+ 
     
     useEffect(() => {
         async function update(){
@@ -30,7 +31,7 @@ const Search = () => {
         }
 
         update();
-    }, []);
+    }, [value]);
     
     // need to add use effect or something like that 
     // need to rerender the chart every time the category changes
@@ -45,8 +46,9 @@ const Search = () => {
                     <Tab label = "Tech"/>
                 </Tabs>
             </AppBar>
-            
+            {console.log(value)}
             {mainStocks(value)}
+            
             <p>{value}</p>
             
         </div>

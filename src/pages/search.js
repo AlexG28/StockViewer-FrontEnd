@@ -1,65 +1,54 @@
-// practicing axios fetch API
+// https://material-ui.com/components/tables/
+
+
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
 
-// import stuff for the material design import Table from '@material-ui/core/Table';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+//imports for the menu
 
+import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+
+import mainStocks from '../pages/mainStocks';
 
 const Search = () => {
-    const [count, setcount] = useState(0);
-    const [data, setData] = useState(null);
     
-        
-    useEffect(async () => {
-        const response = await axios.get('http://localhost:3001/getQuoteRoute/Tech');
-        const data = await response.data;
-        const stocks = data[0].Stocks;
-        console.log(stocks);
-        setData(stocks);
-    }, []);    
+    const [value, setValue] = useState(0);
     
-    //{data && <div> {data.price} hello there </div>}
-        
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    }
+
+    
+    useEffect(() => {
+        async function update(){
+            console.log("this is a change");
+
+        }
+
+        update();
+    }, []);
+    
+    // need to add use effect or something like that 
+    // need to rerender the chart every time the category changes
     return (
         <div>
-            <h1> You clicked me {count} times </h1>
-            <button onClick={() => setcount(count+1)}>increase the count </button>
+            <AppBar position="static">
+                <Tabs value={value} onChange={handleChange}>
+                    <Tab label = "Bank"/>
+                    <Tab label = "Healthcare"/>
+                    <Tab label = "Semiconductor"/>
+                    <Tab label = "Automotive"/>
+                    <Tab label = "Tech"/>
+                </Tabs>
+            </AppBar>
             
-            {data && <div> {data[0].price}
-                <TableContainer component={Paper}>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Ticker</TableCell>
-                                <TableCell>Company Name</TableCell>
-                                <TableCell>Price</TableCell>
-                                <TableCell>Daily Change</TableCell>
-                            </TableRow>
-                        </TableHead>
-
-                        <TableBody>
-                            {data.map((element) => ( // current error is that this is null when executing
-                                <TableRow key ={element.ticker}>
-                                    <TableCell component ="th" scope="row">
-                                        {element.ticker}
-                                    </TableCell>
-                                    <TableCell alight="right">{element.companyName}</TableCell>
-                                    <TableCell alight="right">{element.price}</TableCell>
-                                    <TableCell alight="right">{element.dailyChange}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div>}
-        
+            {mainStocks(value)}
+            <p>{value}</p>
+            
         </div>
     )
 }

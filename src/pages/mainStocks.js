@@ -14,32 +14,29 @@ import Paper from '@material-ui/core/Paper';
 
 const MainStocks = (currentCategory) => {
     const categories = ["Bank", "Healthcare", "Semicondctor", "Automotive", "Tech"];
-
-    const [count, setcount] = useState(0);
+    
     const [data, setData] = useState(null);
-   
+    
     if (currentCategory == null){
         currentCategory = 0;
     }
-        
+    
     useEffect(() => {
         async function fetchData(){
-
+            
             const response = await axios.get('http://localhost:3001/getQuoteRoute/' + categories[currentCategory]);
             const data = await response.data;
             const stocks = data[0].Stocks;
+            console.log(currentCategory);
             console.log(stocks);
             setData(stocks);
         }
         fetchData();
     }, []);    
     
-    //{data && <div> {data.price} hello there </div>}
         
     return (
         <div>
-            <h1> You clicked me {count} times </h1>
-            <button onClick={() => setcount(count+1)}>increase the count </button>
             
             {data && <div> {data[0].price}
                 <TableContainer component={Paper}>

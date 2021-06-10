@@ -14,6 +14,19 @@ const MainStocks = () => {
     const [suggest, setSuggest] = useState([]);
     const [resfound, setResfound] = useState(true);
     
+    function filterValid(item, searchval){
+        
+        if (item.Name.toLowerCase().includes(searchval.toString())) {
+            return true;
+        }
+
+        if (item.Symbol.toLowerCase().includes(searchval.toString())){
+            return true;
+        }
+
+        return false;
+    }
+
     const handleChange = (e) => {
         let searchval = e.target.value;
         let suggestion = [];
@@ -22,8 +35,9 @@ const MainStocks = () => {
             suggestion = data1
                 .sort()
                 .filter(
-                        x => x.Symbol.toString().toLowerCase() == searchval.toLowerCase() || x.Name.toLowerCase() == searchval.toLowerCase()
+                        //x => x.Symbol.toString().toLowerCase() == searchval.toLowerCase() || x.Name.toLowerCase() == searchval.toLowerCase()
                         //(e) => e.toString().toLowerCase().includes(searchval.toLowerCase())
+                        x => filterValid(x, searchval)
                     );
             console.log(suggestion);
             setResfound(suggestion.length !== 0 ? true : false);
@@ -59,10 +73,9 @@ const MainStocks = () => {
         return (
             <ul>
                 {console.log(suggest)}
-                {suggest.map((item, index) => {
-                    console.log(item);
+                {suggest.slice(0,10).map((item, index) => {
                     return (
-                        <li onClick={() => suggestedText(item)}>{item.Name.toString()}</li>
+                        <li onClick={() => suggestedText(item.Symbol.toString())}>{item.Name.toString()}</li>
 
                     )
                 })}

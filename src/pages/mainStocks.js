@@ -22,7 +22,7 @@ const MainStocks = () => {
             suggestion = data1
                 .sort()
                 .filter(
-                        x => x.Symbol.toString() == searchval || x.Name == searchval
+                        x => x.Symbol.toString().toLowerCase() == searchval.toLowerCase() || x.Name.toLowerCase() == searchval.toLowerCase()
                         //(e) => e.toString().toLowerCase().includes(searchval.toLowerCase())
                     );
             console.log(suggestion);
@@ -36,6 +36,19 @@ const MainStocks = () => {
         console.log(value);
         setSearchtext(value);
         setSuggest([]);
+
+
+        /*
+        {suggest.map((item, index) => {
+            return (
+            <div key={index}>
+                <li onClick={() => suggestedText(item)}>{item}</li>
+                {index !== suggest.length - 1 && <hr />}
+            </div>
+            );
+        })}
+
+        */
     };
 
     const getSuggestions = () => {
@@ -45,14 +58,15 @@ const MainStocks = () => {
     
         return (
             <ul>
+                {console.log(suggest)}
                 {suggest.map((item, index) => {
+                    console.log(item);
                     return (
-                    <div key={index}>
-                        <li onClick={() => suggestedText(item)}>{item}</li>
-                        {index !== suggest.length - 1 && <hr />}
-                    </div>
-                    );
+                        <li onClick={() => suggestedText(item)}>{item.Name.toString()}</li>
+
+                    )
                 })}
+                
             </ul>
         );
     };

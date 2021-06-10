@@ -1,6 +1,3 @@
-// https://material-ui.com/components/tables/
-
-
 import React, { useState, useEffect } from 'react'
 
 //imports for the menu
@@ -19,6 +16,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 //import mainStocks from '../pages/mainStocks';
+
+// add CSS but it works rather well
 
 const Search = () => {
     const categories = ["Bank", "Healthcare", "Semicondctor", "Automotive", "Tech"];
